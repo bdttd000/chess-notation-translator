@@ -1,7 +1,7 @@
 import { chessBoardType, finalNotation } from "../types/chessTypes";
-import { getPiecePosition } from "./getChessboard";
+import { getPieceInfo } from "./getChessboard";
 import { parseLetterToPiece } from "./parseLetter";
-import { isUpperCase } from "./shared";
+import { isUppercaseLetter } from "./shared";
 
 export const chessBoardParser = (
   notation: string,
@@ -9,8 +9,6 @@ export const chessBoardParser = (
   playerToMove: string
 ) => {
   const finalNotation: finalNotation = {};
-
-  // console.log(notation);
 
   if (notation.includes("+")) {
     notation = notation.replace("+", "");
@@ -34,8 +32,13 @@ export const chessBoardParser = (
     finalNotation.capture = true;
   }
 
-  // getPiecePosition(notation);
+  if (!isUppercaseLetter(notation.charAt(0))) {
+    notation = "P" + notation;
+  }
 
+  const startingPosition = getPieceInfo(notation, chessBoard, playerToMove);
+
+  // TODO
   // figura na 1 miejscu, jak nie to pionek
   // sprawdzic ktora to moze byc i zwrocic skad dokad idzie
 };
