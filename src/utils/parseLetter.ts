@@ -22,3 +22,17 @@ export const parseLetterToPiece = (letter: string, isCaptured: Boolean) => {
     return "Nieznana figura";
   }
 };
+
+export const parsePositionToIndex = (position: string): [number, number] => {
+  const row = 8 - parseInt(position[1]);
+  const column = parseLetterToIndex(position.charAt(0));
+
+  return [row, column];
+};
+
+export const parseIndexToPosition = (row: number, column: number): string => {
+  const rowIndex = 8 - row;
+  const columnIndex = String.fromCharCode(97 + column);
+
+  return columnIndex + rowIndex;
+};
