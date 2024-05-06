@@ -1,6 +1,10 @@
 import { initialChessboard } from "../constants/initialChessboard";
 import { chessBoardType, finalObjectType } from "../types/chessTypes";
-import { parseLetterToIndex } from "./parseLetter";
+import {
+  parseIndexToPosition,
+  parseLetterToIndex,
+  parsePositionToIndex,
+} from "./parseLetter";
 import { isNumber } from "./shared";
 
 export const getLastestChessboard = (
@@ -45,9 +49,7 @@ export const getPieceInfo = (
     }
   }
 
-  searchForPiece(piece, destination, playerToMove, helpers, chessBoard);
-
-  // zwrocic lokalizacje figury
+  return searchForPiece(piece, destination, playerToMove, helpers, chessBoard);
 };
 
 export const searchForPiece = (
@@ -57,5 +59,32 @@ export const searchForPiece = (
   helpers: (number | null)[],
   chessBoard: chessBoardType
 ) => {
-  console.log(piece, destination, playerToMove, helpers);
+  console.log(piece, destination, playerToMove, helpers[0], helpers[1]);
+  if (piece.toLowerCase() === "p") {
+    return findPawn(destination, playerToMove, helpers, chessBoard);
+  }
+};
+
+export const findPawn = (
+  destination: string,
+  playerToMove: string,
+  helpers: (number | null)[],
+  chessBoard: chessBoardType
+): string => {
+  console.log(destination);
+
+  const [row, column] = parsePositionToIndex(destination);
+
+  console.log(row, column);
+
+  const orientation = playerToMove === "w" ? 1 : -1;
+  if (helpers[1] === null) {
+    if (chessBoard[row + orientation][column] === playerToMove + "p") {
+      return parseIndexToPosition(row + orientation, column);
+    }
+  } else {
+  }
+
+  // console.log(chessBoard[row][column]);
+  return "unknown";
 };
