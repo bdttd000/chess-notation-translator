@@ -81,6 +81,11 @@ export const findPawn = (
   if (helpers[1] === null) {
     if (chessBoard[row + orientation][column] === playerToMove + "p") {
       return parseIndexToPosition(row + orientation, column);
+    } else if (
+      chessBoard[row + orientation * 2][column] ===
+      playerToMove + "p"
+    ) {
+      return parseIndexToPosition(row + orientation * 2, column);
     }
   } else {
   }
