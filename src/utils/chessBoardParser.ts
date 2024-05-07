@@ -1,10 +1,6 @@
 import { chessBoardType, finalNotation } from "../types/chessTypes";
 import { getPieceInfo } from "./getChessboard";
-import {
-  parseIndexToPosition,
-  parseLetterToPiece,
-  parsePositionToIndex,
-} from "./parseLetter";
+import { parsePositionToIndex } from "./parseLetter";
 import { isUppercaseLetter } from "./shared";
 
 export const chessBoardParser = (
@@ -26,7 +22,7 @@ export const chessBoardParser = (
 
   if (notation.includes("=")) {
     const promotionPiece = notation.slice(-1);
-    finalNotation.promotionPiece = parseLetterToPiece(promotionPiece, true);
+    finalNotation.promotionPiece = promotionPiece;
     notation = notation.replace("=" + promotionPiece, "");
     finalNotation.promotion = true;
   }
@@ -50,12 +46,7 @@ export const chessBoardParser = (
     finalNotation.secondPosition = moveInformation[2];
   }
 
-  //We get second piece name aswell
   makeMove(finalNotation, chessBoard, playerToMove);
-
-  // TODO
-  // figura na 1 miejscu, jak nie to pionek
-  // sprawdzic ktora to moze byc i zwrocic skad dokad idzie
 };
 
 const makeMove = (
@@ -97,7 +88,15 @@ const makeMove = (
     const expectedPiece = playerToMove + finalNotation.firstPiece.toLowerCase();
 
     if (pieceToMove === expectedPiece) {
-      chessBoard[secondPosition[0]][secondPosition[1]] = pieceToMove;
+      if (finalNotation.promotion) {
+        chessBoard[secondPosition[0]][secondPosition[1]] =
+          playerToMove + finalNotation.promotionPiece?.toLowerCase();
+      } else if (finalNotation.castling) {
+        // TODO
+        // castling on chessBoard
+      } else {
+        chessBoard[secondPosition[0]][secondPosition[1]] = pieceToMove;
+      }
       chessBoard[firstPosition[0]][firstPosition[1]] = null;
     }
   }
