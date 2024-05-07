@@ -1,6 +1,6 @@
 import { chessBoardType, finalNotation } from "../types/chessTypes";
 import { getPieceInfo } from "./getChessboard";
-import { parseLetterToPiece } from "./parseLetter";
+import { parseLetterToPiece, parsePositionToIndex } from "./parseLetter";
 import { isUppercaseLetter } from "./shared";
 
 export const chessBoardParser = (
@@ -36,9 +36,63 @@ export const chessBoardParser = (
     notation = "P" + notation;
   }
 
-  const startingPosition = getPieceInfo(notation, chessBoard, playerToMove);
+  const moveInformation = getPieceInfo(notation, chessBoard, playerToMove);
+
+  if (typeof moveInformation === "string") {
+    finalNotation.castlingNotation = moveInformation;
+  } else {
+    finalNotation.firstPiece = moveInformation[0];
+    finalNotation.firstPosition = moveInformation[1];
+    finalNotation.secondPosition = moveInformation[2];
+  }
+
+  //We get second piece name aswell
+  makeMove(finalNotation, chessBoard, playerToMove);
 
   // TODO
   // figura na 1 miejscu, jak nie to pionek
   // sprawdzic ktora to moze byc i zwrocic skad dokad idzie
+};
+
+const makeMove = (
+  finalNotation: finalNotation,
+  chessBoard: chessBoardType,
+  playerToMove: string
+) => {
+  if (finalNotation.secondPosition === "unknown") {
+    return;
+  }
+
+  console.log(chessBoard);
+
+  if (
+    finalNotation.firstPiece &&
+    finalNotation.firstPosition &&
+    finalNotation.secondPosition
+  ) {
+    const firstPosition = parsePositionToIndex(finalNotation.firstPosition);
+    const secondPosition = parsePositionToIndex(finalNotation.secondPosition);
+    const orientation = playerToMove === "w" ? 1 : -1;
+
+    const secondPiecePosition =
+      chessBoard[secondPosition[0]][secondPosition[1]] !== null
+        ? [secondPosition[0], secondPosition[1]]
+        : [secondPosition[0], secondPosition[1 + orientation]];
+
+    if (chessBoard[secondPiecePosition[0]][secondPiecePosition[1]] !== null) {
+      finalNotation.secondPiece =
+        chessBoard[secondPiecePosition[0]][secondPiecePosition[1]]?.charAt(1);
+      // chessBoard[secondPiecePosition[0]][secondPiecePosition[1]] = null;
+    }
+
+    console.log(finalNotation.firstPosition);
+
+    const pieceToMove = chessBoard[firstPosition[0]][firstPosition[1]];
+    const expectedPiece = playerToMove + finalNotation.firstPiece.toLowerCase();
+
+    if (pieceToMove === expectedPiece) {
+      chessBoard[secondPosition[0]][secondPosition[1]] = pieceToMove;
+      chessBoard[firstPosition[0]][firstPosition[1]] = null;
+    }
+  }
 };
