@@ -94,6 +94,9 @@ export const findPawn = (
       return parseIndexToPosition(row + orientation * 2, column);
     }
   } else {
+    if (chessBoard[row + orientation][helpers[1]] === playerToMove + "p") {
+      return parseIndexToPosition(row + orientation, helpers[1]);
+    }
   }
 
   return "unknown";
