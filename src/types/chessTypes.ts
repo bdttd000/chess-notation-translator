@@ -19,6 +19,7 @@ export type finalNotation = {
   secondPosition?: string;
   check?: boolean;
   castling?: string;
+  castlingNotation?: string;
   promotion?: boolean;
   promotionPiece?: string;
   checkMate?: boolean;
