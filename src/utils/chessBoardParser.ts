@@ -1,6 +1,10 @@
 import { chessBoardType, finalNotation } from "../types/chessTypes";
 import { getPieceInfo } from "./getChessboard";
-import { parseLetterToPiece, parsePositionToIndex } from "./parseLetter";
+import {
+  parseIndexToPosition,
+  parseLetterToPiece,
+  parsePositionToIndex,
+} from "./parseLetter";
 import { isUppercaseLetter } from "./shared";
 
 export const chessBoardParser = (
@@ -72,20 +76,22 @@ const makeMove = (
   ) {
     const firstPosition = parsePositionToIndex(finalNotation.firstPosition);
     const secondPosition = parsePositionToIndex(finalNotation.secondPosition);
-    const orientation = playerToMove === "w" ? 1 : -1;
 
-    const secondPiecePosition =
-      chessBoard[secondPosition[0]][secondPosition[1]] !== null
-        ? [secondPosition[0], secondPosition[1]]
-        : [secondPosition[0], secondPosition[1 + orientation]];
+    if (finalNotation.capture) {
+      const orientation = playerToMove === "w" ? 1 : -1;
+      const secondPiecePosition =
+        chessBoard[secondPosition[0]][secondPosition[1]] !== null
+          ? [secondPosition[0], secondPosition[1]]
+          : [secondPosition[0] + orientation, secondPosition[1]];
 
-    if (chessBoard[secondPiecePosition[0]][secondPiecePosition[1]] !== null) {
-      finalNotation.secondPiece =
-        chessBoard[secondPiecePosition[0]][secondPiecePosition[1]]?.charAt(1);
-      // chessBoard[secondPiecePosition[0]][secondPiecePosition[1]] = null;
+      if (chessBoard[secondPiecePosition[0]][secondPiecePosition[1]] !== null) {
+        finalNotation.secondPiece =
+          chessBoard[secondPiecePosition[0]][secondPiecePosition[1]]?.charAt(1);
+        chessBoard[secondPiecePosition[0]][secondPiecePosition[1]] = null;
+      } else {
+        throw new Error("Wrong notation or unexpected error occured");
+      }
     }
-
-    console.log(finalNotation.firstPosition);
 
     const pieceToMove = chessBoard[firstPosition[0]][firstPosition[1]];
     const expectedPiece = playerToMove + finalNotation.firstPiece.toLowerCase();
