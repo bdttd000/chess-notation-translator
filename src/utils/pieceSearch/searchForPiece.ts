@@ -1,5 +1,6 @@
 import { findPiece } from "../../types/chessTypes";
 import { findBishop } from "./bishop";
+import { findKing } from "./king";
 import { findKnight } from "./knight";
 import { findPawn } from "./pawn";
 import { findQueen } from "./queen";
@@ -17,6 +18,8 @@ export const searchForPiece = (piece: string, pieceInfo: findPiece) => {
       return findRook(pieceInfo);
     case "q":
       return findQueen(pieceInfo);
+    case "k":
+      return findKing(pieceInfo);
   }
 
   return "unknown";

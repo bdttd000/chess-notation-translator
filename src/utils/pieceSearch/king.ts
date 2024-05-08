@@ -3,11 +3,11 @@ import {
   parseIndexToPosition,
   parsePositionToIndex,
 } from "../formatting/parseLetter";
-import { possibleKnightMoves } from "../helpers/possiblePiecesMoves";
+import { possibleKingMoves } from "../helpers/possiblePiecesMoves";
 
-export const findKnight = (pieceInfo: findPiece): string => {
+export const findKing = (pieceInfo: findPiece): string => {
   const [destRow, destColumn] = parsePositionToIndex(pieceInfo.destination);
-  const possibleMoves = possibleKnightMoves(destRow, destColumn);
+  const possibleMoves = possibleKingMoves(destRow, destColumn);
 
   for (const [row, column] of possibleMoves) {
     if (
@@ -15,9 +15,7 @@ export const findKnight = (pieceInfo: findPiece): string => {
       row <= 7 &&
       column >= 0 &&
       column <= 7 &&
-      (pieceInfo.helpers[0] === null || pieceInfo.helpers[0] === row) &&
-      (pieceInfo.helpers[1] === null || pieceInfo.helpers[1] === column) &&
-      pieceInfo.chessBoard[row][column] === pieceInfo.playerToMove + "n"
+      pieceInfo.chessBoard[row][column] === pieceInfo.playerToMove + "k"
     ) {
       return parseIndexToPosition(row, column);
     }
