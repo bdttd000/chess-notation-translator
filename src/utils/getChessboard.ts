@@ -1,5 +1,9 @@
 import { initialChessboard } from "../constants/initialChessboard";
-import { chessBoardType, finalObjectType } from "../types/chessTypes";
+import {
+  chessBoardType,
+  finalObjectType,
+  findPiece,
+} from "../types/chessTypes";
 import {
   parseIndexToPosition,
   parseLetterToIndex,
@@ -50,52 +54,82 @@ export const getPieceInfo = (
     }
   }
 
-  const piecePosition = searchForPiece(
-    piece,
+  const pieceInfo = {
     destination,
     playerToMove,
     helpers,
-    chessBoard
-  );
+    chessBoard,
+  };
+  const piecePosition = searchForPiece(piece, pieceInfo);
 
   return [piece, piecePosition, destination];
 };
 
-export const searchForPiece = (
-  piece: string,
-  destination: string,
-  playerToMove: string,
-  helpers: (number | null)[],
-  chessBoard: chessBoardType
-) => {
-  if (piece.toLowerCase() === "p") {
-    return findPawn(destination, playerToMove, helpers, chessBoard);
+export const searchForPiece = (piece: string, pieceInfo: findPiece) => {
+  switch (piece.toLowerCase()) {
+    case "p":
+      return findPawn(pieceInfo);
+    case "n":
+      return findKnight(pieceInfo);
   }
 
   return "unknown";
 };
 
-export const findPawn = (
-  destination: string,
-  playerToMove: string,
-  helpers: (number | null)[],
-  chessBoard: chessBoardType
-): string => {
-  const [row, column] = parsePositionToIndex(destination);
+const findPawn = (pieceInfo: findPiece): string => {
+  const [row, column] = parsePositionToIndex(pieceInfo.destination);
 
-  const orientation = playerToMove === "w" ? 1 : -1;
-  if (helpers[1] === null) {
-    if (chessBoard[row + orientation][column] === playerToMove + "p") {
+  const orientation = pieceInfo.playerToMove === "w" ? 1 : -1;
+  if (pieceInfo.helpers[1] === null) {
+    if (
+      pieceInfo.chessBoard[row + orientation][column] ===
+      pieceInfo.playerToMove + "p"
+    ) {
       return parseIndexToPosition(row + orientation, column);
     } else if (
-      chessBoard[row + orientation * 2][column] ===
-      playerToMove + "p"
+      pieceInfo.chessBoard[row + orientation * 2][column] ===
+      pieceInfo.playerToMove + "p"
     ) {
       return parseIndexToPosition(row + orientation * 2, column);
     }
   } else {
-    if (chessBoard[row + orientation][helpers[1]] === playerToMove + "p") {
-      return parseIndexToPosition(row + orientation, helpers[1]);
+    if (
+      pieceInfo.chessBoard[row + orientation][pieceInfo.helpers[1]] ===
+      pieceInfo.playerToMove + "p"
+    ) {
+      return parseIndexToPosition(row + orientation, pieceInfo.helpers[1]);
+    }
+  }
+
+  return "unknown";
+};
+
+const findKnight = (pieceInfo: findPiece): string => {
+  const [destRow, destColumn] = parsePositionToIndex(pieceInfo.destination);
+
+  const possibleLocations = [
+    [destRow + 2, destColumn + 1],
+    [destRow + 2, destColumn - 1],
+    [destRow - 2, destColumn + 1],
+    [destRow - 2, destColumn - 1],
+    [destRow + 1, destColumn + 2],
+    [destRow + 1, destColumn - 2],
+    [destRow - 1, destColumn + 2],
+    [destRow - 1, destColumn - 2],
+  ];
+
+  for (const location of possibleLocations) {
+    const [row, column] = location;
+    if (
+      row >= 0 &&
+      row <= 7 &&
+      column >= 0 &&
+      column <= 7 &&
+      (pieceInfo.helpers[0] === null || pieceInfo.helpers[0] === row) &&
+      (pieceInfo.helpers[1] === null || pieceInfo.helpers[1] === column) &&
+      pieceInfo.chessBoard[row][column] === pieceInfo.playerToMove + "n"
+    ) {
+      return parseIndexToPosition(row, column);
     }
   }
 

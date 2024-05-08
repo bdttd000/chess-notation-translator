@@ -24,3 +24,10 @@ export type finalNotation = {
   promotionPiece?: string;
   checkMate?: boolean;
 };
+
+export type findPiece = {
+  destination: string;
+  playerToMove: string;
+  helpers: (number | null)[];
+  chessBoard: chessBoardType;
+};
