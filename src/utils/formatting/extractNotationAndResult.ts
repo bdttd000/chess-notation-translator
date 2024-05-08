@@ -6,7 +6,7 @@ export const extractNotationAndResult = (
   let result = notation.match(/\b\S+\b$/);
 
   if (!result || !possibleResults.includes(result[0])) {
-    return [notation, "Pratia w toku"];
+    return [notation, "Partia niedokończona"];
   }
 
   return [notation.replace(result[0], ""), result[0]];
