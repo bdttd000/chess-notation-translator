@@ -2,6 +2,7 @@ import { findPiece } from "../../types/chessTypes";
 import { findBishop } from "./bishop";
 import { findKnight } from "./knight";
 import { findPawn } from "./pawn";
+import { findRook } from "./rook";
 
 export const searchForPiece = (piece: string, pieceInfo: findPiece) => {
   switch (piece.toLowerCase()) {
@@ -11,6 +12,8 @@ export const searchForPiece = (piece: string, pieceInfo: findPiece) => {
       return findKnight(pieceInfo);
     case "b":
       return findBishop(pieceInfo);
+    case "r":
+      return findRook(pieceInfo);
   }
 
   return "unknown";
