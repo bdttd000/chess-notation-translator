@@ -1,16 +1,12 @@
+import { directionsRook } from "../../constants/shared";
+
 export const getRookMoves = (
   destRow: number,
   destColumn: number
 ): [number, number][] => {
-  const directions = [
-    [1, 0],
-    [0, 1],
-    [-1, 0],
-    [0, -1],
-  ];
   const possibleMoves: [number, number][] = [];
 
-  for (const [row, column] of directions) {
+  for (const [row, column] of directionsRook) {
     let newRow = destRow + row;
     let newColumn = destColumn + column;
 

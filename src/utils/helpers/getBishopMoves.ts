@@ -1,16 +1,12 @@
+import { directionsBishop } from "../../constants/shared";
+
 export const getBishopMoves = (
   destRow: number,
   destColumn: number
 ): [number, number][] => {
-  const directions = [
-    [1, 1],
-    [1, -1],
-    [-1, 1],
-    [-1, -1],
-  ];
   const possibleMoves: [number, number][] = [];
 
-  for (const [row, column] of directions) {
+  for (const [row, column] of directionsBishop) {
     let newRow = destRow + row;
     let newColumn = destColumn + column;
 
