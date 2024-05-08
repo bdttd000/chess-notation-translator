@@ -7,7 +7,7 @@ import {
 export const findKnight = (pieceInfo: findPiece): string => {
   const [destRow, destColumn] = parsePositionToIndex(pieceInfo.destination);
 
-  const possibleLocations = [
+  const possibleKnightMoves = [
     [destRow + 2, destColumn + 1],
     [destRow + 2, destColumn - 1],
     [destRow - 2, destColumn + 1],
@@ -18,8 +18,7 @@ export const findKnight = (pieceInfo: findPiece): string => {
     [destRow - 1, destColumn - 2],
   ];
 
-  for (const location of possibleLocations) {
-    const [row, column] = location;
+  for (const [row, column] of possibleKnightMoves) {
     if (
       row >= 0 &&
       row <= 7 &&
