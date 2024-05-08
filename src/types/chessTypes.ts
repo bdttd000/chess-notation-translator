@@ -18,7 +18,7 @@ export type finalNotation = {
   secondPiece?: string;
   secondPosition?: string;
   check?: boolean;
-  castling?: string;
+  castling?: boolean;
   castlingNotation?: string;
   promotion?: boolean;
   promotionPiece?: string;

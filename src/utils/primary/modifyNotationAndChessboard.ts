@@ -39,6 +39,7 @@ export const modifyNotationAndChessboard = (
   const moveInformation = getPieceInfo(notation, chessBoard, playerToMove);
 
   if (typeof moveInformation === "string") {
+    finalNotation.castling = true;
     finalNotation.castlingNotation = moveInformation;
   } else {
     finalNotation.firstPiece = moveInformation[0];

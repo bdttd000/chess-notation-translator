@@ -1,16 +1,15 @@
 import { chessBoardType, finalNotation } from "../../types/chessTypes";
 import { parsePositionToIndex } from "../formatting/parseLetter";
+import { makeCastling } from "./makeCastling";
 
 export const makeMove = (
   finalNotation: finalNotation,
   chessBoard: chessBoardType,
   playerToMove: string
 ) => {
-  if (finalNotation.secondPosition === "unknown") {
-    return;
+  if (finalNotation.castling && finalNotation.castlingNotation) {
+    makeCastling(finalNotation.castlingNotation, chessBoard, playerToMove);
   }
-
-  console.log(chessBoard);
 
   if (
     finalNotation.firstPiece &&
@@ -43,9 +42,6 @@ export const makeMove = (
       if (finalNotation.promotion) {
         chessBoard[secondPosition[0]][secondPosition[1]] =
           playerToMove + finalNotation.promotionPiece?.toLowerCase();
-      } else if (finalNotation.castling) {
-        // TODO
-        // castling on chessBoard
       } else {
         chessBoard[secondPosition[0]][secondPosition[1]] = pieceToMove;
       }
