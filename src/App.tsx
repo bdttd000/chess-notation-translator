@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getFinalObject } from "./utils/primary/finalObject";
 import { chessMoveType, finalObjectType } from "./types/chessTypes";
 import ChessBoard from "./components/ChessBoard";
@@ -22,6 +22,10 @@ function App() {
     setCounter(0);
     yourFunction(inputValue);
   };
+
+  useEffect(() => {
+    setFinalObject(finalObjectArray[counter]);
+  }, [finalObjectArray, counter]);
 
   const yourFunction = (arg: string) => {
     [finalObjectResult, result] = getFinalObject(arg);
@@ -54,14 +58,14 @@ function App() {
       <div className="flex">
         <div
           id="prev"
-          className="w-24 h-10 bg-gray-500 m-2 p-2"
+          className="w-24 h-10 bg-gray-500 m-2 p-2 cursor-pointer"
           onClick={() => handleClick(-1)}
         >
           prev
         </div>
         <div
           id="next"
-          className="w-24 h-10 bg-gray-500 m-2 p-2"
+          className="w-24 h-10 bg-gray-500 m-2 p-2  cursor-pointer"
           onClick={() => handleClick(1)}
         >
           next
