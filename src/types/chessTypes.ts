@@ -1,11 +1,11 @@
+export type chessBoardType = (string | null)[][];
+
 export type chessMoveType = {
   moveNumber: number;
   notification: string;
-  chessBoard: (null | string)[][];
+  chessBoard: chessBoardType;
   moveInNotation: string;
 };
-
-export type chessBoardType = (string | null)[][];
 
 export type finalObjectType = chessMoveType[];
 
