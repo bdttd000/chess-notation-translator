@@ -20,7 +20,7 @@ const ChessBoard = ({ chessBoard }: { chessBoard: chessBoardType }) => {
     return board;
   };
 
-  return <>{renderBoard()}</>;
+  return <div>{renderBoard()}</div>;
 };
 
 export default ChessBoard;
