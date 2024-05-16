@@ -20,7 +20,7 @@ const ChessBoard = ({ chessBoard }: { chessBoard: chessBoardType }) => {
     return board;
   };
 
-  return <div>{renderBoard()}</div>;
+  return <div className="h-fit">{renderBoard()}</div>;
 };
 
 export default ChessBoard;

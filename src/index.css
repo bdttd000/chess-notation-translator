@@ -34,7 +34,7 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #404040;
+  background: #808080;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -43,4 +43,21 @@ code {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #242424;
+}
+
+.main-border {
+  border-width: 12px;
+}
+
+.bg-transition {
+  transition: background-color 0.3s ease;
+}
+
+.moveHistory-arrows > div:hover {
+  transition: background-color 0.3s ease;
+  background-color: rgb(102 102 121);
+}
+
+.moveHistory-arrows img {
+  filter: invert(100%) brightness(80%) 
 }
