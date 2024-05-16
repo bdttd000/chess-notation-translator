@@ -14,15 +14,17 @@ const Row = ({
   setMove: (move: number) => void;
 }) => {
   return (
-    <div className="flex">
-      <span className="w-8">{rowNumber}</span>
+    <div className="flex items-center text-zinc-300">
+      <span className="bg-zinc-700 w-12 p-1 text-center">{rowNumber}</span>
       <span
         id={`span-${rowNumber * 2 - 2}`}
         onClick={() => setMove(rowNumber * 2 - 2)}
-        className="hover:bg-slate-500 cursor-pointer w-16"
+        className="hover:bg-slate-500 cursor-pointer w-32 p-1 px-3"
         style={{
           backgroundColor:
-            activeMoveIndex === rowNumber * 2 - 2 ? "red" : "inherit",
+            activeMoveIndex === rowNumber * 2 - 2
+              ? "rgb(179 48 48)"
+              : "inherit",
         }}
       >
         {firstMove}
@@ -30,10 +32,12 @@ const Row = ({
       <span
         id={`span-${rowNumber * 2 - 1}`}
         onClick={() => setMove(rowNumber * 2 - 1)}
-        className="hover:bg-slate-500 cursor-pointer w-16"
+        className="hover:bg-slate-500 cursor-pointer w-32 p-1 px-3"
         style={{
           backgroundColor:
-            activeMoveIndex === rowNumber * 2 - 1 ? "red" : "inherit",
+            activeMoveIndex === rowNumber * 2 - 1
+              ? "rgb(179 48 48)"
+              : "inherit",
         }}
       >
         {secondMove ?? ""}

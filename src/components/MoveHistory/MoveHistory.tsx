@@ -40,7 +40,11 @@ const MoveHistory = ({
 
     return rows;
   };
-  return <div>{renderMoveHistory()}</div>;
+  return (
+    <div className="bg-zinc-800 overflow-y-auto	 h-[800px]">
+      {renderMoveHistory()}
+    </div>
+  );
 };
 
 export default MoveHistory;

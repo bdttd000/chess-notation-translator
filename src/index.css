@@ -28,3 +28,19 @@ code {
 .black {
   background-color: #d18b47;
 }
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #404040;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #151515;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242424;
+}

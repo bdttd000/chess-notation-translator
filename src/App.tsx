@@ -46,7 +46,7 @@ function App() {
   }, [chessMoveArray, activeMoveIndex]);
 
   return (
-    <div className="bg-gray-600">
+    <div className="min-w-full min-h-full">
       <input
         className="border-2 border-blue-700"
         type="text"
