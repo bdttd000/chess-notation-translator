@@ -1,16 +1,16 @@
 import React from "react";
-import whitePawn from "../assets/images/wp.svg";
-import whiteKnight from "../assets/images/wn.svg";
-import whiteBishop from "../assets/images/wb.svg";
-import whiteRook from "../assets/images/wr.svg";
-import whiteQueen from "../assets/images/wq.svg";
-import whiteKing from "../assets/images/wk.svg";
-import blackPawn from "../assets/images/bp.svg";
-import blackKnight from "../assets/images/bn.svg";
-import blackBishop from "../assets/images/bb.svg";
-import blackRook from "../assets/images/br.svg";
-import blackQueen from "../assets/images/bq.svg";
-import blackKing from "../assets/images/bk.svg";
+import whitePawn from "../../assets/images/wp.svg";
+import whiteKnight from "../../assets/images/wn.svg";
+import whiteBishop from "../../assets/images/wb.svg";
+import whiteRook from "../../assets/images/wr.svg";
+import whiteQueen from "../../assets/images/wq.svg";
+import whiteKing from "../../assets/images/wk.svg";
+import blackPawn from "../../assets/images/bp.svg";
+import blackKnight from "../../assets/images/bn.svg";
+import blackBishop from "../../assets/images/bb.svg";
+import blackRook from "../../assets/images/br.svg";
+import blackQueen from "../../assets/images/bq.svg";
+import blackKing from "../../assets/images/bk.svg";
 
 const Square = ({ color, piece }: { color: string; piece: string | null }) => {
   let piecePath;

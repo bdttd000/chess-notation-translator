@@ -1,5 +1,5 @@
 import React from "react";
-import { chessBoardType } from "../types/chessTypes";
+import { chessBoardType } from "../../types/chessTypes";
 import Square from "./Square";
 
 const ChessBoard = ({ chessBoard }: { chessBoard: chessBoardType }) => {
