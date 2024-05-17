@@ -72,12 +72,19 @@ function App() {
         >
           Generuj szachownicę
         </button>
-        <div className="w-full border-[6px] border-zinc-700 bg-zinc-400 p-2 text-xl hover:bg-slate-400 bg-transition h-56 flex justify-center items-center text-center">
-          {chessMove
-            ? activeMoveIndex === chessMoveArray.length - 1
-              ? chessMove.notification + " " + result
-              : chessMove.notification
-            : "Wprowadź notację aby otrzymać informację o ruchu"}
+        <div className="w-full border-[6px] border-zinc-700 bg-zinc-400 p-2 text-xl hover:bg-slate-400 bg-transition h-56 flex justify-center items-center text-center flex-col gap-6">
+          {chessMove ? (
+            activeMoveIndex === chessMoveArray.length - 1 ? (
+              <>
+                {chessMove.notification}
+                <span>{result}</span>
+              </>
+            ) : (
+              chessMove.notification
+            )
+          ) : (
+            "Wprowadź notację aby otrzymać informację o ruchu"
+          )}
         </div>
       </div>
       <div className="flex w-fit main-border border-zinc-700 h-fit">

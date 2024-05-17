@@ -35,9 +35,7 @@ export const createFinalObject = (
 
       const chessMove: chessMoveType = {
         moveNumber: index + 1,
-        notification:
-          getNotification(notationObject) +
-          (index * 2 + (playerColor === "w" ? 0 : 1)),
+        notification: getNotification(notationObject, playerColor),
         chessBoard: chessBoard,
         moveInNotation: move,
       };
