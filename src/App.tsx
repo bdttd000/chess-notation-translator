@@ -6,6 +6,7 @@ import ChessBoard from "./components/ChessBoard/ChessBoard";
 import MoveHistory from "./components/MoveHistory/MoveHistory";
 import { initialChessboard } from "./constants/initialChessboard";
 import { notationExamples } from "./constants/notationExamples";
+import Example from "./components/NotationExamples/Example";
 
 function App() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -87,12 +88,11 @@ function App() {
         <div className="mt-4 flex flex-wrap gap-4">
           {notationExamples
             ? notationExamples.map((example, index) => (
-                <span
-                  onClick={() => setInputValue(example)}
-                  className="border-[6px] border-zinc-700 w-[calc(25%-0.75rem)] p-2 text-center bg-zinc-400 cursor-pointer transition-all hover:bg-[#7f5329]"
-                >
-                  Partia {index + 1}
-                </span>
+                <Example
+                  setInputValue={setInputValue}
+                  example={example}
+                  index={index + 1}
+                />
               ))
             : ""}
         </div>
