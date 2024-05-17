@@ -9,7 +9,37 @@ const ChessBoard = ({ chessBoard }: { chessBoard: chessBoardType }) => {
       const row = [];
       for (let j = 0; j < 8; j++) {
         let color = (i + j) % 2 === 0 ? "white" : "black";
-        row.push(<Square key={j} color={color} piece={chessBoard[i][j]} />);
+        if (i === 7 && j === 7) {
+          row.push(
+            <Square
+              key={j}
+              color={color}
+              piece={chessBoard[i][j]}
+              letterLeft="H"
+              letterRight="1"
+            />
+          );
+        } else if (i === 7) {
+          row.push(
+            <Square
+              key={j}
+              color={color}
+              piece={chessBoard[i][j]}
+              letterLeft={String.fromCharCode(65 + j)}
+            />
+          );
+        } else if (j === 7) {
+          row.push(
+            <Square
+              key={j}
+              color={color}
+              piece={chessBoard[i][j]}
+              letterRight={8 - i}
+            />
+          );
+        } else {
+          row.push(<Square key={j} color={color} piece={chessBoard[i][j]} />);
+        }
       }
       board.push(
         <div key={i} className="flex">

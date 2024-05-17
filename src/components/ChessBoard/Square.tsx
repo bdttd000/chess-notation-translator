@@ -12,7 +12,17 @@ import blackRook from "../../assets/images/br.svg";
 import blackQueen from "../../assets/images/bq.svg";
 import blackKing from "../../assets/images/bk.svg";
 
-const Square = ({ color, piece }: { color: string; piece: string | null }) => {
+const Square = ({
+  color,
+  piece,
+  letterLeft,
+  letterRight,
+}: {
+  color: string;
+  piece: string | null;
+  letterLeft?: string | number;
+  letterRight?: string | number;
+}) => {
   let piecePath;
 
   switch (piece) {
@@ -57,9 +67,29 @@ const Square = ({ color, piece }: { color: string; piece: string | null }) => {
       break;
   }
 
+  const negativeColor = color === "black" ? "text-[#ffce9e]" : "text-[#d18b47]";
+
   return (
-    <span className={`square ${color} flex `}>
-      {piecePath && <img src={piecePath} className="w-full" alt="xd" />}
+    <span className={`square ${color} flex relative`}>
+      {letterLeft ? (
+        <span
+          className={`w-5 h-5 absolute bottom-[2px] left-[2px] ${negativeColor}`}
+        >
+          {letterLeft}
+        </span>
+      ) : (
+        ""
+      )}
+      {letterRight ? (
+        <span
+          className={`w-3 h-5 absolute top-[2px] right-[2px] ${negativeColor}`}
+        >
+          {letterRight}
+        </span>
+      ) : (
+        ""
+      )}
+      {piecePath && <img src={piecePath} className="w-full" alt="piece" />}
     </span>
   );
 };

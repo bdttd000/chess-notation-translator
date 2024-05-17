@@ -59,7 +59,7 @@ function App() {
     <div className="min-w-[100vw] min-h-[100vh] bg-zinc-900 flex justify-center items-center">
       <div className="flex flex-col w-1/4 mr-8">
         <textarea
-          className="border-[6px] border-zinc-700 bg-zinc-400 outline-none p-2 text-xl placeholder:text-zinc-600 hover:border-[#7f5329] focus:border-[#7f5329] transition-all"
+          className="border-[6px] border-zinc-700 bg-zinc-400 outline-none p-2 text-xl placeholder:text-zinc-600 hover:border-[#7f5329] focus:border-[#7f5329] transition-all resize-none"
           rows={12}
           value={inputValue}
           onChange={handleChange}
