@@ -14,6 +14,7 @@ function App() {
   const [chessMove, setChessMove] = useState<chessMoveType>();
   const [activeMoveIndex, setActiveMoveIndex] = useState<number>(0);
   const [result, setResult] = useState<null | string>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputValue(event.target.value);
@@ -25,10 +26,17 @@ function App() {
   };
 
   const destructFinalObject = (arg: string) => {
-    const [tempObject, tempResult] = getFinalObject(arg);
-    setChessMoveArray(tempObject);
-    setChessMove(chessMoveArray[activeMoveIndex]);
-    setResult(tempResult);
+    let result = getFinalObject(arg);
+    if (typeof result === "string") {
+      setErrorMessage(result);
+      setChessMoveArray([]);
+    } else {
+      const [tempObject, tempResult] = result;
+      setErrorMessage(null);
+      setChessMoveArray(tempObject);
+      setChessMove(chessMoveArray[activeMoveIndex]);
+      setResult(tempResult);
+    }
   };
 
   const setMove = (move: number) => {
@@ -72,23 +80,30 @@ function App() {
           Generuj szachownicę
         </button>
         <div className="w-full border-[6px] border-zinc-700 bg-zinc-400 p-2 my-[33px] text-xl h-40 flex justify-center items-center text-center flex-col gap-2 hover:border-[#7f5329] focus:border-[#7f5329] transition-all">
-          {chessMove ? (
+          {errorMessage ? (
+            <span key="error" className="text-red-600">
+              {errorMessage}
+            </span>
+          ) : chessMove ? (
             activeMoveIndex === chessMoveArray.length - 1 ? (
               <>
-                {chessMove.notification}
-                <span>{result}</span>
+                <span key="notification">{chessMove.notification}</span>
+                <span key="result">{result}</span>
               </>
             ) : (
-              chessMove.notification
+              <span key="notification-only">{chessMove.notification}</span>
             )
           ) : (
-            "Wprowadź notację aby otrzymać informację o ruchu"
+            <span key="default">
+              Wprowadź notację aby otrzymać informację o ruchu
+            </span>
           )}
         </div>
         <div className="mt-4 flex flex-wrap gap-4">
           {notationExamples
             ? notationExamples.map((example, index) => (
                 <Example
+                  key={index}
                   setInputValue={setInputValue}
                   example={example}
                   index={index + 1}
@@ -98,7 +113,11 @@ function App() {
         </div>
       </div>
       <div className="flex w-fit main-border border-zinc-700 h-fit">
-        {chessMove ? <ChessBoard chessBoard={chessMove.chessBoard} /> : ""}
+        {chessMove ? (
+          <ChessBoard chessBoard={chessMove.chessBoard} />
+        ) : (
+          <ChessBoard chessBoard={initialChessboard} />
+        )}
         {chessMoveArray ? (
           <MoveHistory
             chessMoveArray={chessMoveArray}

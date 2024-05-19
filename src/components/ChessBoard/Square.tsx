@@ -70,10 +70,10 @@ const Square = ({
   const negativeColor = color === "black" ? "text-[#ffce9e]" : "text-[#d18b47]";
 
   return (
-    <span className={`square ${color} flex relative`}>
+    <span className={`square ${color} flex relative font-bold`}>
       {letterLeft ? (
         <span
-          className={`w-5 h-5 absolute bottom-[2px] left-[2px] ${negativeColor}`}
+          className={`w-fit h-5 absolute bottom-[2px] left-[2px] ${negativeColor}`}
         >
           {letterLeft}
         </span>
@@ -82,7 +82,7 @@ const Square = ({
       )}
       {letterRight ? (
         <span
-          className={`w-3 h-5 absolute top-[2px] right-[2px] ${negativeColor}`}
+          className={`w-fit h-fit absolute top-[2px] right-[4px] ${negativeColor}`}
         >
           {letterRight}
         </span>

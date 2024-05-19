@@ -10,7 +10,7 @@ export const extractNotationAndResult = (
       case "1-0":
         return [
           notation.replace(result[0], ""),
-          "Koniec partii - wygrana białcyh!",
+          "Koniec partii - wygrana białych!",
         ];
       case "0-1":
         return [
