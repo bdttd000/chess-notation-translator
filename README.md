@@ -4,6 +4,8 @@ Opracowanie translatora notacji szachowej do wizualizacji ruchów na realnej sza
 
 ### Przykładowe działanie aplikacji
 
+[Live demo:](https://bdttd000.github.io/chess-notation-translator/)
+
 https://github.com/bdttd000/chess-notation-translator/assets/44643460/5baef08a-3261-4bcf-bab5-01555d7b0402
 
 ### Zastosowane technologie
