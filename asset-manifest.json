@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/chess-notation-translator/static/css/main.8f566b13.css",
+    "main.js": "/chess-notation-translator/static/js/main.cb3e328c.js",
+    "static/js/453.433eab43.chunk.js": "/chess-notation-translator/static/js/453.433eab43.chunk.js",
+    "static/media/br.svg": "/chess-notation-translator/static/media/br.fdc575582c2cbe2ec82093702945226f.svg",
+    "static/media/bn.svg": "/chess-notation-translator/static/media/bn.7930be9e07b51bc0e069b1d77e31261a.svg",
+    "static/media/bk.svg": "/chess-notation-translator/static/media/bk.6c8cc8fabe5215cc854dec67ee7781fd.svg",
+    "static/media/bq.svg": "/chess-notation-translator/static/media/bq.cf388bf415c0d33ec16f23593b8d0d91.svg",
+    "static/media/wn.svg": "/chess-notation-translator/static/media/wn.d47944d2cee4f8c707d1907706c142fa.svg",
+    "static/media/bb.svg": "/chess-notation-translator/static/media/bb.04932f63ef10dcdee115b649286230f5.svg",
+    "static/media/wb.svg": "/chess-notation-translator/static/media/wb.aa411d5809c6380713b4312d55aafc53.svg",
+    "static/media/wr.svg": "/chess-notation-translator/static/media/wr.9e48b84f189eea24339f8a679e7a664f.svg",
+    "static/media/wq.svg": "/chess-notation-translator/static/media/wq.7a1aecff0f22ff68c43f9b7f8a81d0b4.svg",
+    "index.html": "/chess-notation-translator/index.html",
+    "static/media/bp.svg": "/chess-notation-translator/static/media/bp.be5d44ca5ee868885d216188996e3a00.svg",
+    "static/media/wp.svg": "/chess-notation-translator/static/media/wp.50273cc6d86861932d0a01c38274009a.svg",
+    "static/media/wk.svg": "/chess-notation-translator/static/media/wk.5d58f1999749c1b5ef5bc1699c38b2f7.svg",
+    "static/media/left-double-arrow.svg": "/chess-notation-translator/static/media/left-double-arrow.0cb8618bf7c3fb7613f8e7600be3f970.svg",
+    "static/media/right-double-arrow.svg": "/chess-notation-translator/static/media/right-double-arrow.0b7f4adc01520232e663d1191c290db6.svg",
+    "static/media/left-arrow.svg": "/chess-notation-translator/static/media/left-arrow.2863c92c381a50cdcd2860ef6fd032c3.svg",
+    "static/media/right-arrow.svg": "/chess-notation-translator/static/media/right-arrow.ebab65532c76c1cb1885ee92ce9c1f03.svg",
+    "main.8f566b13.css.map": "/chess-notation-translator/static/css/main.8f566b13.css.map",
+    "main.cb3e328c.js.map": "/chess-notation-translator/static/js/main.cb3e328c.js.map",
+    "453.433eab43.chunk.js.map": "/chess-notation-translator/static/js/453.433eab43.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f566b13.css",
+    "static/js/main.cb3e328c.js"
+  ]
+}
